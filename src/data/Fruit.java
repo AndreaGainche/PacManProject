@@ -2,7 +2,6 @@
  * Représente un fruit du jeu.
  * @invariant Le type du fruit peut prendre uniquement les valeurs suivantes : Cerise ; Fraise ; Orange ; Pomme ; Melon ; Banane .
  * @author Alexandre
- *
  */
 public interface Fruit {
 

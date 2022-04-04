@@ -16,9 +16,10 @@ public interface Data {
 	public Fruit[] getFruits();
 	
 	/**
+	 * Le nombre de murs correspond à la longueur du tableau.
 	 * @return les positions des murs du plateau de jeu.
 	 */
-	public String getPosMurs();
+	public String[] getPosMurs();
 	
 	/**
 	 * @return l'ensemble des personnages sur le plateau de jeu. 
