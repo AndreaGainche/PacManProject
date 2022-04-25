@@ -1,3 +1,4 @@
+package data;
 /**
  * Représente un fruit du jeu.
  * @invariant Le type du fruit peut prendre uniquement les valeurs suivantes : Cerise ; Fraise ; Orange ; Pomme ; Melon ; Banane .
@@ -6,9 +7,9 @@
 public interface Fruit {
 
 	/**
-	 * @return la position du fruit.
+	 * @return la position du fruit sous forme d'un tableau contenant 2 entiers (coordonnées x et y).
 	 */
-	public String getPosition();
+	public int[] getPosition();
 	
 	/**
 	 * @return le type du fruit.

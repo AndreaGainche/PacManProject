@@ -1,9 +1,18 @@
 package logic;
 
+import data.Data;
+
 public interface Fruit {
     /**
-     * @param fruit : le numero du fruit (1 pour le premier fruit, 2 pour le 2eme ...)
-     * @return : list d'int avec en premier la position x du personnage et y en 2eme
+     *
+     * @return : list d'int de la position du fruit
      */
-    int[] positionDepart(int fruit);
+    int[] position(Data donnee);
+
+    /**
+     *
+     * @return : String avec le type du fruit
+     */
+    String getType();
+
 }

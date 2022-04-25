@@ -1,4 +1,5 @@
 package logic;
 
-public interface Pacman extends Personnage{
+public interface Pacman extends Personnagelogic {
+
 }
