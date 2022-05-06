@@ -11,4 +11,6 @@ public interface Personnagelogic {
     int[] positionDepart(int personnage, Data donnes);
 
     int[] position();
+
+    int getNombreDeVie();
 }

@@ -8,4 +8,5 @@ public interface Mur {
      * @return : list de 2 int avec la position en x puis la pisition en y du mur dans la grille
      */
     int[] positionDepart(int mur, Data donnes);
+    int[] getPosition();
 }

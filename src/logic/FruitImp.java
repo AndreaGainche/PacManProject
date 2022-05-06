@@ -24,7 +24,7 @@ public class FruitImp extends MySuperBaseClass implements Fruit {
         return tabfinal;
     }
 
-    public String gettype (int fruit, Data donnes){
+    public String gettype(int fruit, Data donnes) {
         data.Fruit[] tab = (data.Fruit[]) donnes.getFruits();
         return tab[fruit].getType();
     }
@@ -34,7 +34,7 @@ public class FruitImp extends MySuperBaseClass implements Fruit {
         return new int[]{this.x, this.y};
     }
 
-    public String getType(){
+    public String getType() {
         return this.nom;
     }
 

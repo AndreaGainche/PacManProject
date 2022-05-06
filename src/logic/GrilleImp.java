@@ -4,89 +4,134 @@ import java.util.*;
 
 import data.*;
 
-//TODO interface avec view gestion au niveau+1 en fct de l'input
 public class GrilleImp implements Grille {
-    List<FruitImp> MyListeFruit;
-    List<MurImp> MyListeMur;
-    List<FamtomeImp> MyListeFantome;
-    Pacman pacman;
+    ArrayList<FruitImp> MyListeFruit;
+    ArrayList<MurImp> MyListeMur;
+    ArrayList<FamtomeImp> MyListeFantome;
+    PacmanImp pacman;
     Data donnees;
+    int niveau;
 
-    public GrilleImp(int niveau, Data donnees) {
+    //todo point (score)
+    public GrilleImp(int niveau, Data donnees, int nbrViePacman) {
+        this.niveau = niveau;
         this.donnees = donnees.getDataImpl(niveau);
-        this.MyListeFruit = new ArrayList<>(nombreDeFruit(this.donnees));
-        this.MyListeMur = new ArrayList<>(nombreDeMur(this.donnees));
-        this.MyListeFantome = new ArrayList<>(nombreDeFantome(this.donnees));
-        this.pacman = new PacmanImp(donnees);
-        remplissageFruit(donnees);
+        this.MyListeFruit = new ArrayList<>(nombreDeFruit());
+        this.MyListeMur = new ArrayList<>(nombreDeMur());
+        this.MyListeFantome = new ArrayList<>(nombreDeFantome());
+        this.pacman = new PacmanImp(donnees, nbrViePacman);
+        remplissageFantome();
         remplissageMur();
-        remplissageFruit(donnees);
+        remplissageFruit();
     }
 
     @Override
-    public int dimensionGrille(Data donnees) {
-        return donnees.getTaillePlateau();
+    public int dimensionGrille() {
+        return this.donnees.getTaillePlateau();
     }
 
     @Override
-    public int nombreDeMur(Data donnees) {
-        return (donnees.getPosMurs().length);
+    public int nombreDeMur() {
+        return (this.donnees.getPosMurs().length);
     }
 
     @Override
-    public int nombreDeFantome(Data donnees) {
-        return (donnees.getPersonnages().length);
+    public int nombreDeFantome() {
+        return (this.donnees.getPersonnages().length);
     }
 
     @Override
-    public int nombreDeFruit(Data donnees) {
-        return (donnees.getFruits().length);
+    public int nombreDeFruit() {
+        return (this.donnees.getFruits().length);
+    }
+
+    @Override
+    public Grille Initialisation(int niveau, Data donnees) {
+        return new GrilleImp(niveau, donnees, 3);
     }
 
     public void remplissageMur() {
-        int nombre = nombreDeMur(this.donnees);
+        int nombre = nombreDeMur();
         for (int i = 1; i < nombre; i++) {
             this.MyListeMur.add(new MurImp(i, this.donnees));
         }
     }
 
-    public void remplissageFruit(Data donnees) {
-        int nombre = nombreDeFantome(this.donnees);
+    public void remplissageFantome() {
+        int nombre = nombreDeFantome();
         for (int i = 1; i < nombre; i++) {
-            this.MyListeFantome.add(new FamtomeImp(i, this.donnees));
+            this.MyListeFantome.add(new FamtomeImp(i, this.donnees, this.donnees.getPersonnages()[i].getNom()));
         }
     }
 
-    public Grille Initialisation(int niveau, Data donnees) {
-        return new GrilleImp(niveau, donnees);
-    }
-
-    @Override
-    public ArrayList<Fruit> getListeFruit(Grille grille) {
-        return grille.getListeFruit(grille);
-    }
-
-    @Override
-    public ArrayList<Mur> getListMur(Grille grille) {
-        return grille.getListMur(grille);
-    }
-
-    @Override
-    public ArrayList<FamtomeImp> getListeFantome(Grille grille) {
-        return grille.getListeFantome(grille);
-    }
-
-    @Override
-    public Pacman getPacMan(Grille grille) {
-        return grille.getPacMan(grille);
-    }
-
-    @Override
-    public Grille actualisation(Grille grille, int action) { //todo déplacment de pacman
-        for (FamtomeImp f : grille.getListeFantome(grille)){
-            f.avance((GrilleImp) grille); //todo attention
+    public void remplissageFruit() {
+        int nombre = nombreDeFruit();
+        for (int i = 1; i < nombre; i++) {
+            this.MyListeFruit.add(new FruitImp(i, this.donnees));
         }
+    }
 
+    public GrilleImp Initialisation2(int niveau, int nbrViePacman) {
+        return new GrilleImp(niveau, this.donnees, nbrViePacman);
+    }
+
+    public ArrayList<Fruit> changementFruit(ArrayList<FruitImp> liste) {
+        ArrayList<Fruit> nouvelleListe = null;
+        assert false;
+        nouvelleListe.addAll(liste);
+        return nouvelleListe;
+    }
+
+    public ArrayList<Mur> changementMur(ArrayList<MurImp> liste) {
+        ArrayList<Mur> nouvelleListe = null;
+        assert false;
+        nouvelleListe.addAll(liste);
+        return nouvelleListe;
+    }
+
+    public ArrayList<Fantome> changementFantome(ArrayList<FamtomeImp> liste) {
+        ArrayList<Fantome> nouvelleListe = null;
+        assert false;
+        nouvelleListe.addAll(liste);
+        return nouvelleListe;
+    }
+
+    @Override
+    public ArrayList<Fruit> getListeFruit() {
+        return changementFruit(this.MyListeFruit);
+    }
+
+    @Override
+    public ArrayList<Mur> getListMur() {
+        return changementMur(this.MyListeMur);
+    }
+
+    @Override
+    public ArrayList<Fantome> getListeFantome() {
+        return changementFantome(this.MyListeFantome);
+    }
+
+    public ArrayList<FamtomeImp> getListeFantomeInterne() {
+        return this.MyListeFantome;
+    }
+
+    @Override
+    public Pacman getPacMan() {
+        return this.pacman;
+    }
+
+    @Override
+    public Grille actualisation(int action) {
+        Grille grille = this;
+        for (FamtomeImp f : this.getListeFantomeInterne()) {
+            f.avance(this);
+        }
+        int infopacman = this.pacman.deplacement(action, this);
+        if (infopacman == 1) {
+            grille = Initialisation2(this.niveau, this.pacman.getNombreDeVie());
+        } else if (infopacman == 2) {
+            return null;
+        }
         return grille;
     }
 }

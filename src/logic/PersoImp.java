@@ -9,7 +9,7 @@ public class PersoImp extends MySuperBaseClass implements Personnagelogic {
     static final int nul = 0, haut = 1, droite = 2, bas = 3, gauche = 4;
 
 
-    int vitesse, x, y, direction, taille; // direction :0 = null, 1 = haut, 2 = droite, 3 = bas, 4 = gauche
+    int vitesse, x, y, direction, taille, nbrVie; // direction :0 = null, 1 = haut, 2 = droite, 3 = bas, 4 = gauche
     int[] hitbox;
 
 
@@ -27,6 +27,11 @@ public class PersoImp extends MySuperBaseClass implements Personnagelogic {
     @Override
     public int[] position() {
         return new int[]{this.x, this.y};
+    }
+
+    @Override
+    public int getNombreDeVie() {
+        return this.nbrVie;
     }
 
     public void setVitesse(int vitesse) {
@@ -52,7 +57,7 @@ public class PersoImp extends MySuperBaseClass implements Personnagelogic {
                     }
                 }
             case droite:
-                for (MurImp m : grille.MyListeMur) {
+                for (MurImp m : grille.MyListeMur) {//todo modifier +10
                     if (this.hitbox[2] + 10 + this.vitesse > m.hitbox[0] && this.hitbox[1] > m.hitbox[1] && this.hitbox[3] < m.hitbox[3]) {
                         resultat = true;
                         break;

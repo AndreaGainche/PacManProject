@@ -19,6 +19,11 @@ public class MurImp extends MySuperBaseClass implements Mur {
         return donnes.getPosMurs()[mur];
     }
 
+    @Override
+    public int[] getPosition() {
+        return new int[]{this.x,this.y};
+    }
+
     public int[] setHitbox(int taille) { //TODO definition relative ou actualisation ?
         return new int[]{this.x, this.y, (this.x + taille), (this.y + taille)};
     }
