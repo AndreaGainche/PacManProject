@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="view">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Pacman_Nassim.zip!/" />
+      <root url="jar://$PROJECT_DIR$/Pacman_view0505.zip!/" />
+      <root url="jar://$PROJECT_DIR$/Pacman_view_NassimHmamouche.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
