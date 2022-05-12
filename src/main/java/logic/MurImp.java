@@ -2,7 +2,7 @@ package logic;
 
 import data.Data;
 
-public class MurImp extends MySuperBaseClass implements Mur {
+public class MurImp implements Mur {
     final static int tailleMur = 50;
     int[] hitbox;
     int x, y;

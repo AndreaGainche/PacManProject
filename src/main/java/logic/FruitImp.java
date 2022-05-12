@@ -30,7 +30,7 @@ public class FruitImp implements Fruit {
     }
 
     @Override
-    public int[] position(Data donnee) {
+    public int[] position() {
         return new int[]{this.x, this.y};
     }
 

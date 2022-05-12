@@ -7,7 +7,7 @@ public interface Fruit {
      *
      * @return : list d'int de la position du fruit
      */
-    int[] position(Data donnee);
+    int[] position();
 
     /**
      *
