@@ -5,6 +5,7 @@ package view;
  *
  * @author Pascale Launay
  * @inv getWidth() >= 0 && getHeight() >= 0
+ * @inv getPosition() >= 0
  */
 public abstract class Figure
 {
@@ -109,7 +110,6 @@ public abstract class Figure
     {
         return this.x;
     }
-
     /**
      * Give the y location of the upper left corner of the figure bounding
      * rectangle in pixels
@@ -119,6 +119,15 @@ public abstract class Figure
     public int getY()
     {
         return this.y;
+    }
+    /**
+     * Give the x and y location of the upper left corner of the figure bounding
+     * rectangle in pixels
+     *
+     * @return the figure x and y location
+     */
+    public int[] getPosition(){
+        return new int[]{getX(), getY()};
     }
 
     /**
@@ -190,5 +199,6 @@ public abstract class Figure
     protected final void invariant()
     {
         assert this.width >= 0 && this.height >= 0 : "Invariant violated: wrong dimensions";
+        assert getPosition()[0] >=0 && getPosition()[1] >=0 : "Invariant violated : negative position";
     }
 }

@@ -1,11 +1,10 @@
 package view;
 
-import logic.GrilleImp;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.io.File;
+import logic.*;
 
 /**
  * Create shapes and display them
@@ -13,24 +12,17 @@ import java.io.File;
  * @author Nassim Hmamouche
  */
 public class PacmanPicture {
-    private Grille grille;
+    private GrilleFigure grille;
     private ImageFigure logo;
 
     /**
      * Create a new picture with grid.
      */
-    public PacmanPicture(logic.Grille grilleLogic){
-        grille = new Grille(grilleLogic);
+    public PacmanPicture(Grille grilleLogic){
+        grille = new GrilleFigure(grilleLogic);
         logo = new ImageFigure(150, 28, 175, grilleLogic.dimensionGrille()+20, "assets"+File.separator+"logo.png");
-    }
-
-    /**
-     * Main method : creates a picture, displays walls and characters and animates them
-     */
-    public static void main(String args[]){
-        PacmanPicture jeu = new PacmanPicture(new GrilleImp(0, new Data(), 3));
-        jeu.draw();
-        jeu.animate();
+        this.draw();
+        this.animate();
     }
 
     /** 
