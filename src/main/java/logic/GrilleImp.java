@@ -60,7 +60,7 @@ public class GrilleImp implements Grille {
 
     public void remplissageFantome() {
         int nombre = nombreDeFantome();
-        for(Personnage f : this.donnees.getPersonnages()){
+        for (Personnage f : this.donnees.getPersonnages()) {
             System.out.println(f.getPosition()[0] + "   " + f.getPosition()[1]);
         }
         for (int i = 1; i < nombre; i++) {
@@ -90,7 +90,7 @@ public class GrilleImp implements Grille {
     }
 
     public ArrayList<Fantome> changementFantome(ArrayList<FamtomeImp> liste) {
-        return new ArrayList<Fantome> (liste);
+        return new ArrayList<Fantome>(liste);
     }
 
     @Override
@@ -119,16 +119,16 @@ public class GrilleImp implements Grille {
 
     @Override
     public Grille actualisation(int action) {
-        Grille grille = this;
         for (FamtomeImp f : this.getListeFantomeInterne()) {
             f.avance(this);
         }
-        int infopacman = this.pacman.deplacement(action, this);
+        int infopacman = this.pacman.deplacement2(action, this);
         if (infopacman == 1) {
-            grille = Initialisation2(this.niveau, this.pacman.getNombreDeVie());
+            return Initialisation2(this.niveau, this.pacman.getNombreDeVie());
         } else if (infopacman == 2) {
             return null;
         }
-        return grille;
+        //this.pacman.x = this.pacman.x+1;
+        return this;
     }
 }

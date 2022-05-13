@@ -23,7 +23,7 @@ public class FamtomeImp extends PersoImp implements Fantome {
     public void avance(GrilleImp grille) { // todo attention ça repart en arrière
         switch (this.direction) {
             case haut:
-                if (collisionMur(grille)) {
+                if (collisionMur(grille, this.direction)) {
                     this.direction = ThreadLocalRandom.current().nextInt(1, 4 + 1);
                     avance(grille);
                 } else {
@@ -31,7 +31,7 @@ public class FamtomeImp extends PersoImp implements Fantome {
                 }
                 break;
             case droite:
-                if (collisionMur(grille)) {
+                if (collisionMur(grille, this.direction)) {
                     this.direction = ThreadLocalRandom.current().nextInt(1, 4 + 1);
                     avance(grille);
                 } else {
@@ -40,7 +40,7 @@ public class FamtomeImp extends PersoImp implements Fantome {
                 break;
 
             case bas:
-                if (collisionMur(grille)) {
+                if (collisionMur(grille, this.direction)) {
                     this.direction = ThreadLocalRandom.current().nextInt(1, 4 + 1);
                     avance(grille);
                 } else {
@@ -48,7 +48,7 @@ public class FamtomeImp extends PersoImp implements Fantome {
                 }
                 break;
             case gauche:
-                if (collisionMur(grille)) {
+                if (collisionMur(grille, this.direction)) {
                     this.direction = ThreadLocalRandom.current().nextInt(1, 4 + 1);
                     avance(grille);
                 } else {

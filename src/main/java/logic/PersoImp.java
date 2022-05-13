@@ -46,9 +46,9 @@ public class PersoImp implements Personnagelogic {
         this.direction = direction;
     }
 
-    public boolean collisionMur(GrilleImp grille) {
+    public boolean collisionMur(GrilleImp grille, int choix) {
         boolean resultat = false;
-        switch (this.direction) {
+        switch (choix) {
             case haut:
                 for (MurImp m : grille.MyListeMur) {
                     if (this.hitbox[1] - 10 - this.vitesse < m.hitbox[3] && this.hitbox[0] > m.hitbox[0] && this.hitbox[2] < m.hitbox[2]) {
@@ -80,5 +80,13 @@ public class PersoImp implements Personnagelogic {
         }
         this.setHitbox(this.taille); // on recalcule la hitbox a chaque déplacement.
         return resultat;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }

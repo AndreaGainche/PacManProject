@@ -4,6 +4,7 @@ import data.Data;
 
 public class PacmanImp extends PersoImp implements Pacman {
     final static int taillePacMan = 25;
+    int buffer;
 
     public PacmanImp(Data donnees, int nbrvie) {
         super(vitesseBase);
@@ -13,7 +14,7 @@ public class PacmanImp extends PersoImp implements Pacman {
         this.nbrVie = nbrvie;
     }//todo collision fantom
 
-    public FruitImp collisionFruit(GrilleImp grille){
+    public FruitImp collisionFruit(GrilleImp grille) {
         FruitImp resultat = null;
         switch (this.direction) {
             case haut:
@@ -49,7 +50,7 @@ public class PacmanImp extends PersoImp implements Pacman {
         return resultat;
     }
 
-    public boolean collisionFantome(GrilleImp grille){
+    public boolean collisionFantome(GrilleImp grille) {
         boolean resultat = false;
         switch (this.direction) {
             case haut:
@@ -86,12 +87,11 @@ public class PacmanImp extends PersoImp implements Pacman {
     }
 
     /**
-     *
      * @param action : action de l'utilisateur pour pacman
      * @param grille : grille de jeu
      * @return : 0 = ça continu normal 1 = game over tout le monde reprend a sa place de départ, 2 = gameover
      */
-    public int deplacement(int action, GrilleImp grille){
+    /*public int deplacement(int action, GrilleImp grille){
         if (action != 0){
             this.direction = action;
         }
@@ -111,6 +111,55 @@ public class PacmanImp extends PersoImp implements Pacman {
             }
         }
         return 0;
+    }*/
+    public int deplacement2(int action, GrilleImp grille) {
+        boolean effetAction = this.collisionMur(grille, action);
+        boolean effetDirection = this.collisionMur(grille, this.direction);
+        if (effetAction && this.direction != 0) { // on regarde si la direction de l'input nous emmene dans un mur
+            this.buffer = action;
+        } else if (!effetAction && action != 0) { //pacman vers l'action si pas de mur
+            this.direction = action;
+            this.mouvement(this.direction);
+        } else if (!effetDirection && this.direction != 0) { // pas de collision mur && pas a l'arret
+            this.mouvement(this.direction);
+        } else if (effetDirection && buffer != 0 && !this.collisionMur(grille, this.buffer)) {//pacman vers un mur mais buffer pas contre mur
+            this.direction = this.buffer;
+            this.buffer = 0;
+            this.mouvement(this.direction);
+        } else if (effetDirection && buffer != 0 && this.collisionMur(grille, this.buffer)) {//pacman vers un mur et buffer vers un mur
+            this.buffer = 0;
+        }
 
+        FruitImp fruit = this.collisionFruit(grille); // si pacman touche un fruit on l'enleve
+        if (fruit != null) {
+            grille.MyListeFruit.remove(fruit);
+        }
+
+        if (this.collisionFantome(grille)) { // si pacman touche un fantome il meure et on regarde ses vies
+            if (this.nbrVie == 1) {
+                return 2;
+            } else {
+                this.nbrVie -= 1;
+                return 1;
+            }
+        }
+
+        return 0;
+    }
+
+    public void mouvement(int direct) {
+        final int haut = 1, droite = 2, bas = 3, gauche = 4;
+        switch (direct) {
+            case haut:
+                this.x -= vitesse;
+                break;
+            case droite:
+                this.y += vitesse;
+                break;
+            case bas:
+                this.x += vitesse;
+            case gauche:
+                this.y -= vitesse;
+        }
     }
 }
