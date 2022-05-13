@@ -57,6 +57,7 @@ public class GrilleFigure {
      * @return the logic grid
      */
     public Grille actualisation(int action){
+        System.out.println("pos " + grilleLogic.getPacMan().position()[0] + " " + grilleLogic.getPacMan().position()[1]);
         return grilleLogic.actualisation(action);
     }
 }

@@ -19,5 +19,6 @@ public class PacmanFigure extends ImageFigure{
      */
     public PacmanFigure(Personnagelogic pacman){
         super(25, 25, pacman.position()[0], pacman.position()[1], "assets"+File.separator+"pacman.gif"); // séparateur de fichier différant selon l'OS (/ sur Linux, \ sur Windows)
+        System.out.println(pacman.position()[0] + " " + pacman.position()[1]);
     }
 }

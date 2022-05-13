@@ -208,7 +208,7 @@ public class CanvasFrame
         try {
             Thread.sleep(milliseconds);
         } catch (InterruptedException e) {
-            // ignoring exception at the moment
+            e.printStackTrace();
         }
     }
 
@@ -325,6 +325,7 @@ public class CanvasFrame
             g2D.fillRect(0, 0, getWidth(), getHeight());
 
             for (SimpleFigure figure : figures) {
+                //System.out.println(figure.getClass());
                 g2D.setColor(figure.getColor());
                 Shape shape = figure.makeShape();
 
@@ -336,7 +337,7 @@ public class CanvasFrame
                 if(shape!=null){
                     g2D.fill(shape);
                 }
-                System.out.println(figure.getClass());
+
 
                /* if(figure instanceof TextFigure){
                     TextFigure txtFig = (TextFigure)figure;

@@ -14,7 +14,6 @@ import logic.*;
 public class PacmanPicture {
     private GrilleFigure grille;
     private ImageFigure logo;
-    private Rectangle mur;
 
     /**
      * Create a new picture with grid.
@@ -22,7 +21,6 @@ public class PacmanPicture {
     public PacmanPicture(Grille grilleLogic){
         grille = new GrilleFigure(grilleLogic); // grilleLogic.dimensionGrille()+20
         logo = new ImageFigure(150, 28, 175, 520, "assets"+File.separator+"logo.png");
-        mur = new Rectangle(50,50,200,200,Color.GREEN);
         this.draw();
         this.animate();
     }
@@ -33,7 +31,6 @@ public class PacmanPicture {
     public void draw(){
         logo.draw();
         grille.draw();
-        mur.draw();
     }
     
     /**
@@ -41,8 +38,6 @@ public class PacmanPicture {
      */
     public void animate(){
         while(true){
-            CanvasFrame.getCanvas().wait(50);
-
             if(CanvasFrame.getCanvas().isSpacePressed()){
                 grille.actualisation(0);
                 CanvasFrame.getCanvas().redraw();
@@ -67,6 +62,7 @@ public class PacmanPicture {
                 grille.actualisation(4);
                 CanvasFrame.getCanvas().redraw();
             }
+            CanvasFrame.getCanvas().wait(40);
         }
     }
 }

@@ -7,8 +7,8 @@ public class PacmanImp extends PersoImp implements Pacman {
 
     public PacmanImp(Data donnees, int nbrvie) {
         super(vitesseBase);
-        this.x = donnees.getTaillePlateau() / 2;
-        this.y = donnees.getTaillePlateau() / 2;
+        this.x = donnees.getPersonnages()[0].getPosition()[0] * 50;
+        this.y = donnees.getPersonnages()[0].getPosition()[1] * 50;
         this.hitbox = setHitbox(taillePacMan);
         this.nbrVie = nbrvie;
     }//todo collision fantom

@@ -19,7 +19,7 @@ public class GrilleImp implements Grille {
         this.MyListeFruit = new ArrayList<>(nombreDeFruit());
         this.MyListeMur = new ArrayList<>(nombreDeMur());
         this.MyListeFantome = new ArrayList<>(nombreDeFantome());
-        this.pacman = new PacmanImp(donnees, nbrViePacman);
+        this.pacman = new PacmanImp(this.donnees, nbrViePacman);
 
         remplissageFantome();
         remplissageMur();
