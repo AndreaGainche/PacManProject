@@ -25,7 +25,7 @@ public class SuperFruitFigure extends ImageFigure{
      * @param fruit implementation from logic package
      */
     public SuperFruitFigure(Fruit fruit){
-        super(25, 25, fruit.getPosition()[0], fruit.getPosition()[1], tabColor.get(fruit.getType()));
+        super(25, 25, fruit.position()[0], fruit.position()[1], tabColor.get(fruit.getType()));
         this.type = fruit.getType();
         superFruitInvariant();
     }

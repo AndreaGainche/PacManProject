@@ -29,6 +29,15 @@ public class TextFigure extends Rectangle{
     public String getText(){
         return this.text;
     }
+    /**
+     * SETTER : Edit the text content
+     *
+     * @param text
+     */
+    public void setText(String text){
+        this.text = text;
+        textInvariant();
+    }
 
     /**
      * Checks if the class invariant is respected

@@ -16,6 +16,6 @@ public class FruitFigure extends Rectangle{
      * @param fruit imported from Logic package
      */
     public FruitFigure(Fruit fruit){
-        super(7, 7, fruit.getPosition()[0], fruit.getPosition()[1], Color.yellow);
+        super(7, 7, fruit.position()[0], fruit.position()[1], Color.yellow);
     }
 }
