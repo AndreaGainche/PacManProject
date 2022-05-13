@@ -7,7 +7,7 @@ import view.PacmanPicture;
 public class main {
     public static void main(String[] args) {
         Data data = new DataNiveauDeJeu();
-        Grille grille = new GrilleImp(1, data, 3);
+        Grille grille = new GrilleImp(1, data);
         System.out.println(grille.getListeFantome().size());
         PacmanPicture pacmanView = new PacmanPicture(grille);
     }

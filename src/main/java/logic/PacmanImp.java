@@ -6,13 +6,25 @@ public class PacmanImp extends PersoImp implements Pacman {
     final static int taillePacMan = 25;
     int buffer;
 
+    /**
+     *
+     * @param donnees : objet de type data d'ou on tir les informations
+     * @param nbrvie : nombre de vie de pacman
+     */
+
     public PacmanImp(Data donnees, int nbrvie) {
         super(vitesseBase);
         this.x = donnees.getPersonnages()[0].getPosition()[0] * 50;
         this.y = donnees.getPersonnages()[0].getPosition()[1] * 50;
         this.hitbox = setHitbox(taillePacMan);
         this.nbrVie = nbrvie;
-    }//todo collision fantom
+    }
+
+    /**
+     *
+     * @param grille : grille actuel de jeu
+     * @return un booleen qui determine si true il y a ue collision et false il n'y a pas de collision
+     */
 
     public FruitImp collisionFruit(GrilleImp grille) {
         FruitImp resultat = null;
@@ -49,6 +61,12 @@ public class PacmanImp extends PersoImp implements Pacman {
         this.setHitbox(this.taille); // on recalcule la hitbox a chaque déplacement.
         return resultat;
     }
+
+    /**
+     *
+     * @param grille :grille actuel de jeu
+     * @return un booleen qui determine si true il y a ue collision et false il n'y a pas de collision
+     */
 
     public boolean collisionFantome(GrilleImp grille) {
         boolean resultat = false;
@@ -91,28 +109,8 @@ public class PacmanImp extends PersoImp implements Pacman {
      * @param grille : grille de jeu
      * @return : 0 = ça continu normal 1 = game over tout le monde reprend a sa place de départ, 2 = gameover
      */
-    /*public int deplacement(int action, GrilleImp grille){
-        if (action != 0){
-            this.direction = action;
-        }
-        if(this.collisionMur(grille)){
-            this.vitesse = 0;
-        }
-        FruitImp fruit = this.collisionFruit(grille);
-        if(fruit != null){
-            grille.MyListeFruit.remove(fruit);
-        }
-        if(this.collisionFantome(grille)){
-            if(this.nbrVie == 1){
-                return 2;
-            }else{
-                this.nbrVie -=1;
-                return 1;
-            }
-        }
-        return 0;
-    }*/
-    public int deplacement2(int action, GrilleImp grille) {
+
+    public int deplacement(int action, GrilleImp grille) {
         boolean effetAction = this.collisionMur(grille, action);
         boolean effetDirection = this.collisionMur(grille, this.direction);
         if (effetAction && this.direction != 0) { // on regarde si la direction de l'input nous emmene dans un mur
@@ -146,6 +144,11 @@ public class PacmanImp extends PersoImp implements Pacman {
 
         return 0;
     }
+
+    /**
+     *
+     * @param direct : sens de mouvmenet de pacman
+     */
 
     public void mouvement(int direct) {
         final int haut = 1, droite = 2, bas = 3, gauche = 4;

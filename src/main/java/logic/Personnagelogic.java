@@ -5,12 +5,14 @@ import data.Data;
 public interface Personnagelogic {
     /**
      *
-     * @param personnage : numero du personnage
-     * @return : list d'int avec en premier la position x du personnage et y en 2eme
+     * @return position en x et y du perso
      */
-    int[] positionDepart(int personnage, Data donnes);
-
     int[] position();
+
+    /**
+     *
+     * @return nombre de vie du perso
+     */
 
     int getNombreDeVie();
 }

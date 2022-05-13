@@ -3,6 +3,9 @@ package logic;
 import data.Data;
 import data.Personnage;
 
+/**
+ * classe mere des 2 types de personnages : pacman et fantomes
+ */
 
 public class PersoImp implements Personnagelogic {
     static final int vitesseNull = 0, vitesseBase = 2, vitesseBoost = 4;
@@ -12,39 +15,46 @@ public class PersoImp implements Personnagelogic {
     int vitesse, x, y, direction, taille, nbrVie; // direction :0 = null, 1 = haut, 2 = droite, 3 = bas, 4 = gauche
     int[] hitbox;
 
-
+    /**
+     * @param vitesse : vitesse du perso
+     */
     public PersoImp(int vitesse) {
         this.vitesse = vitesse;
         this.direction = haut;
     }
 
-    @Override
-    public int[] positionDepart(int personnage, Data donnes) {
-        Personnage[] tab = donnes.getPersonnages();
-        return tab[personnage].getPosition();
-    }
+    /**
+     * @return position actuel du personnage
+     */
 
     @Override
     public int[] position() {
         return new int[]{this.x, this.y};
     }
 
+    /**
+     * @return nombre de vie du personnages
+     */
+
     @Override
     public int getNombreDeVie() {
         return this.nbrVie;
     }
 
-    public void setVitesse(int vitesse) {
-        this.vitesse = vitesse;
-    }
+    /**
+     * @param taille taile du perso
+     * @return list de la hitbox du perso
+     */
 
     public int[] setHitbox(int taille) {
         return new int[]{this.x, this.y, (this.x + taille), (this.y + taille)};
     }
 
-    public void setDirection(int direction) {
-        this.direction = direction;
-    }
+    /**
+     * @param grille : grille de jeux actuel
+     * @param choix  : input de l'utilisateur
+     * @return : true si il y a une colision entre le personnage et un mur
+     */
 
     public boolean collisionMur(GrilleImp grille, int choix) {
         boolean resultat = false;
@@ -80,13 +90,5 @@ public class PersoImp implements Personnagelogic {
         }
         this.setHitbox(this.taille); // on recalcule la hitbox a chaque déplacement.
         return resultat;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 }

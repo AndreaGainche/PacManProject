@@ -7,10 +7,19 @@ import data.Personnage;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * classe qui implémente l'interface Fantome et permet de représenter un fantome et de les manipuler
+ */
 public class FamtomeImp extends PersoImp implements Fantome {
     final static int tailleFantome = 25;
     String nom;
 
+    /**
+     *
+     * @param personnage : numero du fantome
+     * @param donnes : objet data d'ou on tir les informations
+     * @param nom : nom du fantome
+     */
     public FamtomeImp(int personnage, Data donnes, String nom) {
         super(vitesseBase);
         this.x = donnes.getPersonnages()[personnage].getPosition()[0] * 50;
@@ -20,6 +29,10 @@ public class FamtomeImp extends PersoImp implements Fantome {
         this.nom = nom;
     }
 
+    /**
+     *  méthode qui permet d'avancer le fantome pour 1 tour
+     * @param grille : grille du jeu sous forme logique
+     */
     public void avance(GrilleImp grille) { // todo attention ça repart en arrière
         switch (this.direction) {
             case haut:
@@ -58,6 +71,10 @@ public class FamtomeImp extends PersoImp implements Fantome {
         }
     }
 
+    /**
+     *
+     * @return le nom du famtome
+     */
     @Override
     public String getType() {
         return this.nom;
