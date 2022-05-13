@@ -66,7 +66,8 @@ public class GrilleImp implements Grille {
 
     public void remplissageFruit() {
         int nombre = nombreDeFruit();
-        for (int i = 1; i < nombre; i++) {
+        //System.out.println(nombre);
+        for (int i = 0; i < nombre; i++) {
             this.MyListeFruit.add(new FruitImp(i, this.donnees));
         }
     }
@@ -76,24 +77,16 @@ public class GrilleImp implements Grille {
     }
 
     public ArrayList<Fruit> changementFruit(ArrayList<FruitImp> liste) {
-        ArrayList<Fruit> nouvelleListe = null;
         assert false;
-        nouvelleListe.addAll(liste);
-        return nouvelleListe;
+        return new ArrayList<Fruit>(liste);
     }
 
     public ArrayList<Mur> changementMur(ArrayList<MurImp> liste) {
-        ArrayList<Mur> nouvelleListe = null;
-        assert false;
-        nouvelleListe.addAll(liste);
-        return nouvelleListe;
+        return new ArrayList<Mur>(liste);
     }
 
     public ArrayList<Fantome> changementFantome(ArrayList<FamtomeImp> liste) {
-        ArrayList<Fantome> nouvelleListe = null;
-        assert false;
-        nouvelleListe.addAll(liste);
-        return nouvelleListe;
+        return new ArrayList<Fantome> (liste);
     }
 
     @Override
