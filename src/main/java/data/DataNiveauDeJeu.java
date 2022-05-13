@@ -54,8 +54,8 @@ public class DataNiveauDeJeu implements Data {
 			URL url = getClass().getResource(fileTitle);
 			
 			// On cr�er un fichier avec l'url du fichier json correspondant au niveau souhait�.
-			//File file = new File(url.getPath());
-			File file = new File("D:\\Cours\\Semestre 6\\java\\PacManProject\\target\\classes\\data\\niveau1.json");
+			File file = new File(url.getPath());
+			//File file = new File("D:\\Cours\\Semestre 6\\java\\PacManProject\\target\\classes\\data\\niveau1.json");
 			return new DataNiveauDeJeu(file);
 		}
 		catch(NullPointerException e) {

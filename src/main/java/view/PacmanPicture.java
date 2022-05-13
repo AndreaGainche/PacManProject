@@ -39,23 +39,19 @@ public class PacmanPicture {
      */
     public void animate() {
         while (true) {
-            if (CanvasFrame.getCanvas().isUpPressed()) {
+            if (CanvasFrame.getCanvas().isLeftPressed()) {
                 grille.actualisation(1);
-                CanvasFrame.getCanvas().redraw();
-            } else if (CanvasFrame.getCanvas().isRightPressed()) {
-                grille.actualisation(2);
-                CanvasFrame.getCanvas().redraw();
-            } else if (CanvasFrame.getCanvas().isLeftPressed()) {
-                grille.actualisation(3);
-                CanvasFrame.getCanvas().redraw();
             } else if (CanvasFrame.getCanvas().isDownPressed()) {
+                grille.actualisation(2);
+            } else if (CanvasFrame.getCanvas().isRightPressed()) {
+                grille.actualisation(3);
+            } else if (CanvasFrame.getCanvas().isUpPressed()) {
                 grille.actualisation(4);
-                CanvasFrame.getCanvas().redraw();
-            } else {
+            } else if (CanvasFrame.getCanvas().isSpacePressed()) {
                 grille.actualisation(0);
-                CanvasFrame.getCanvas().redraw();
             }
-            CanvasFrame.getCanvas().wait(100);
+            CanvasFrame.getCanvas().wait(20);
+            CanvasFrame.getCanvas().redraw();
         }
     }
 }

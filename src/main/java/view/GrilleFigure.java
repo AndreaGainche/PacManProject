@@ -36,7 +36,6 @@ public class GrilleFigure {
         pacmanGraph.draw();
 
         for (Fantome fantome : listeFantomes) {
-            //System.out.println(fantome.position()[0] + "   " + fantome.position()[1]);
             FantomeFigure fantomeGraph = new FantomeFigure(fantome);
             fantomeGraph.draw();
         }
@@ -53,10 +52,14 @@ public class GrilleFigure {
     /**
      * Returns the action required by user to logic package
      *
-     * @param action 0: space, 1: up, 2: right, 3: down, 4: left
+     * @param action 0: space, 1: left, 2: down, 3: right, 4: up
      */
     public void actualisation(int action) {
-        System.out.println("pos " + grilleLogic.getPacMan().position()[0] + " " + grilleLogic.getPacMan().position()[1]);
         grilleLogic.actualisation(action);
+        pacmanGraph.deplace();
+        for (Fantome fantome : listeFantomes) {
+            FantomeFigure fantomeGraph = new FantomeFigure(fantome);
+            fantomeGraph.deplace();
+        }
     }
 }
