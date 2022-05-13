@@ -4,7 +4,7 @@ import data.Data;
 import data.Personnage;
 
 
-public class PersoImp extends MySuperBaseClass implements Personnagelogic {
+public class PersoImp implements Personnagelogic {
     static final int vitesseNull = 0, vitesseBase = 2, vitesseBoost = 4;
     static final int nul = 0, haut = 1, droite = 2, bas = 3, gauche = 4;
 
