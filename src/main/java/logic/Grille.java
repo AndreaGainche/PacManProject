@@ -26,13 +26,6 @@ public interface Grille {
     int nombreDeFruit();
 
     /**
-     * @param niveau  : int du niveau qu'on veut jouer
-     * @param donnees : objet de type data "vide" qui ne contient pas d'information car on le remet a jour dedans
-     * @return : Grille contenant les positions des murs, personnages et fruit;
-     */
-    Grille Initialisation(int niveau, Data donnees);
-
-    /**
      * @return : array liste de Fruit
      */
     ArrayList<Fruit> getListeFruit();

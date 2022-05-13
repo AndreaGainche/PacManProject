@@ -1,6 +1,8 @@
 package logic;
 
-import data.Data;
+/**
+ * classe qui représente un fruit
+ */
 
 public interface Fruit {
     /**

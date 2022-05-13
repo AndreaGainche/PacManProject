@@ -56,7 +56,10 @@ public class GrilleFigure {
      * @param action 0: space, 1: up, 2: right, 3: down, 4: left
      */
     public void actualisation(int action) {
-        System.out.println("pos " + grilleLogic.getPacMan().position()[0] + " " + grilleLogic.getPacMan().position()[1]);
+        System.out.println("PacMan pos " + grilleLogic.getPacMan().position()[0] + " " + grilleLogic.getPacMan().position()[1]);
+        for(Fantome f : grilleLogic.getListeFantome()){
+            System.out.println("Fantome " + f.getType() + "  pos " + f.position()[0] + " " + f.position()[1]);
+        }
         grilleLogic.actualisation(action);
     }
 }

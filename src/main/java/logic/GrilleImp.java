@@ -4,6 +4,10 @@ import java.util.*;
 
 import data.*;
 
+/**
+ * classe qui implemente grille et represente la grille de jeu
+ */
+
 public class GrilleImp implements Grille {
     ArrayList<FruitImp> MyListeFruit;
     ArrayList<MurImp> MyListeMur;
@@ -12,7 +16,14 @@ public class GrilleImp implements Grille {
     Data donnees;
     int niveau;
 
-    //todo point (score)
+    /**
+     * constructeur
+     *
+     * @param niveau       : niveau du jeu
+     * @param donnees      : objet data vide
+     * @param nbrViePacman : nombre de vie de pacman
+     */
+
     public GrilleImp(int niveau, Data donnees, int nbrViePacman) {
         this.niveau = niveau;
         this.donnees = donnees.getDataImpl(niveau);
@@ -26,30 +37,67 @@ public class GrilleImp implements Grille {
         remplissageFruit();
     }
 
+    /**
+     * @param niveau : niveau de jeu
+     * @param donnees : objet data vide
+     */
+
+    public GrilleImp(int niveau, Data donnees) {
+        this.niveau = niveau;
+        this.donnees = donnees.getDataImpl(niveau);
+        this.MyListeFruit = new ArrayList<>(nombreDeFruit());
+        this.MyListeMur = new ArrayList<>(nombreDeMur());
+        this.MyListeFantome = new ArrayList<>(nombreDeFantome());
+        this.pacman = new PacmanImp(this.donnees, this.donnees.getPersonnages()[0].getNbVies());
+
+        remplissageFantome();
+        remplissageMur();
+        remplissageFruit();
+    }
+
+    /**
+     *
+     * @return : taille de du plateau de jeu
+     */
+
     @Override
     public int dimensionGrille() {
         return this.donnees.getTaillePlateau();
     }
+
+    /**
+     *
+     * @return : return le nombre de nur
+     */
 
     @Override
     public int nombreDeMur() {
         return (this.donnees.getPosMurs().length);
     }
 
+    /**
+     *
+     * @return : return le nombre de fantome
+     */
+
     @Override
     public int nombreDeFantome() {
         return (this.donnees.getPersonnages().length);
     }
+
+    /**
+     *
+     * @return : retourne le nombre de fruit
+     */
 
     @Override
     public int nombreDeFruit() {
         return (this.donnees.getFruits().length);
     }
 
-    @Override
-    public Grille Initialisation(int niveau, Data donnees) {
-        return new GrilleImp(niveau, donnees, 3);
-    }
+    /**
+     * remplis l'arrayList de mur en fonction des données de data
+     */
 
     public void remplissageMur() {
         int nombre = nombreDeMur();
@@ -57,6 +105,10 @@ public class GrilleImp implements Grille {
             this.MyListeMur.add(new MurImp(i, this.donnees));
         }
     }
+
+    /**
+     * remplis l'arrayList de Fantome en fonction des données de data
+     */
 
     public void remplissageFantome() {
         int nombre = nombreDeFantome();
@@ -68,6 +120,10 @@ public class GrilleImp implements Grille {
         }
     }
 
+    /**
+     * remplis l'arrayList de Fruit en fonction des données de data
+     */
+
     public void remplissageFruit() {
         int nombre = nombreDeFruit();
         //System.out.println(nombre);
@@ -76,53 +132,100 @@ public class GrilleImp implements Grille {
         }
     }
 
+    /**
+     * cree une grilleImp
+     * @param niveau : niveau de jeu actuel
+     * @param nbrViePacman : nbr de vie de pacman
+     * @return : Une grilleImp avec les nouveaux parametres que l'on veux
+     */
+
     public GrilleImp Initialisation2(int niveau, int nbrViePacman) {
         return new GrilleImp(niveau, this.donnees, nbrViePacman);
     }
 
+    /**
+     *
+     * @param liste : liste a transformer
+     * @return : liste transformer
+     */
+
     public ArrayList<Fruit> changementFruit(ArrayList<FruitImp> liste) {
         assert false;
-        return new ArrayList<Fruit>(liste);
+        return new ArrayList<>(liste);
     }
+
+    /**
+     *
+     * @param liste : liste a transformer
+     * @return : liste transformer
+     */
 
     public ArrayList<Mur> changementMur(ArrayList<MurImp> liste) {
-        return new ArrayList<Mur>(liste);
+        return new ArrayList<>(liste);
     }
 
+    /**
+     *
+     * @param liste: liste a transformer
+     * @return : liste transformer
+     */
+
     public ArrayList<Fantome> changementFantome(ArrayList<FamtomeImp> liste) {
-        return new ArrayList<Fantome>(liste);
+        return new ArrayList<>(liste);
     }
+
+    /**
+     *
+     * @return retourn la liste de fruit actuel
+     */
 
     @Override
     public ArrayList<Fruit> getListeFruit() {
         return changementFruit(this.MyListeFruit);
     }
 
+    /**
+     *
+     * @return retourn la liste de mur actuel
+     */
+
     @Override
     public ArrayList<Mur> getListMur() {
         return changementMur(this.MyListeMur);
     }
+
+    /**
+     *
+     * @return retourn la liste de fantome actuel
+     */
 
     @Override
     public ArrayList<Fantome> getListeFantome() {
         return changementFantome(this.MyListeFantome);
     }
 
-    public ArrayList<FamtomeImp> getListeFantomeInterne() {
-        return this.MyListeFantome;
-    }
+    /**
+     *
+     * @return PacMAn actuel
+     */
 
     @Override
     public Pacman getPacMan() {
         return this.pacman;
     }
 
+    /**
+     *
+     * @param action: un int 0 = pas d'input, 1 = haut, 2 = droite, 3 = bas, 4 = gauche
+     * @return : la grille actualiser
+     */
+
     @Override
     public Grille actualisation(int action) {
-        for (FamtomeImp f : this.getListeFantomeInterne()) {
+        for (FamtomeImp f : this.MyListeFantome) {
             f.avance(this);
         }
-        int infopacman = this.pacman.deplacement2(action, this);
+        int infopacman = this.pacman.deplacement(action, this);
         if (infopacman == 1) {
             return Initialisation2(this.niveau, this.pacman.getNombreDeVie());
         } else if (infopacman == 2) {
