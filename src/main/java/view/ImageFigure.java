@@ -1,9 +1,7 @@
 package view;
 
 import java.awt.*;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import java.io.File;
 import java.lang.NullPointerException;
 
 /**

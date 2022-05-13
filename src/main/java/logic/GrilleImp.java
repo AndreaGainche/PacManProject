@@ -20,6 +20,7 @@ public class GrilleImp implements Grille {
         this.MyListeMur = new ArrayList<>(nombreDeMur());
         this.MyListeFantome = new ArrayList<>(nombreDeFantome());
         this.pacman = new PacmanImp(donnees, nbrViePacman);
+
         remplissageFantome();
         remplissageMur();
         remplissageFruit();
@@ -59,6 +60,9 @@ public class GrilleImp implements Grille {
 
     public void remplissageFantome() {
         int nombre = nombreDeFantome();
+        for(Personnage f : this.donnees.getPersonnages()){
+            System.out.println(f.getPosition()[0] + "   " + f.getPosition()[1]);
+        }
         for (int i = 1; i < nombre; i++) {
             this.MyListeFantome.add(new FamtomeImp(i, this.donnees, this.donnees.getPersonnages()[i].getNom()));
         }

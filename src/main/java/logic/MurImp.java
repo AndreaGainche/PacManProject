@@ -9,8 +9,8 @@ public class MurImp implements Mur {
 
     public MurImp(int mur, Data donnes) {
         int[] pos = this.positionDepart(mur, donnes);
-        this.x = pos[0];
-        this.y = pos[1];
+        this.x = pos[0]*50;
+        this.y = pos[1]*50;
         this.hitbox = setHitbox(tailleMur);
     }
 

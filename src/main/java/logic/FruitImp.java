@@ -9,8 +9,8 @@ public class FruitImp implements Fruit {
     String nom;
 
     public FruitImp(int fruit, Data donnes) {
-        this.x = positionIni(donnes)[fruit][0];
-        this.y = positionIni(donnes)[fruit][1];
+        this.x = positionIni(donnes)[fruit][0] *50;
+        this.y = positionIni(donnes)[fruit][1]*50;
         this.nom = gettype(fruit, donnes);
         this.hitbox = setHitbox(tailleFruit);
     }

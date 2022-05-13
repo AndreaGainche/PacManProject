@@ -13,8 +13,8 @@ public class FamtomeImp extends PersoImp implements Fantome {
 
     public FamtomeImp(int personnage, Data donnes, String nom) {
         super(vitesseBase);
-        this.x = positionDepart(personnage, donnes)[0];
-        this.y = positionDepart(personnage, donnes)[1];
+        this.x = donnes.getPersonnages()[personnage].getPosition()[0] * 50;
+        this.y = donnes.getPersonnages()[personnage].getPosition()[1] * 50;
         this.hitbox = setHitbox(tailleFantome);
         this.taille = tailleFantome;
         this.nom = nom;

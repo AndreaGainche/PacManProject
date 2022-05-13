@@ -10,17 +10,18 @@ import logic.*;
  * @author Nassim Hmamouche
  */
 public class GrilleFigure {
-    private GrilleFigure grille;
     private PacmanFigure pacmanGraph;
     private ArrayList<Fantome> listeFantomes;
     private ArrayList<Fruit> listeFruits;
     private ArrayList<Mur> listeMurs;
+    private Grille grilleLogic;
 
     /**
      * Create a new picture with a sun, a person and a house.
      */
     public GrilleFigure(Grille grilleLogic){
-        this.grille = new GrilleFigure(grilleLogic);
+        this.grilleLogic = grilleLogic;
+
         pacmanGraph = new PacmanFigure(grilleLogic.getPacMan());
 
         listeFantomes = grilleLogic.getListeFantome();
@@ -35,6 +36,7 @@ public class GrilleFigure {
         pacmanGraph.draw();
 
         for(Fantome fantome : listeFantomes){
+            //System.out.println(fantome.position()[0] + "   " + fantome.position()[1]);
             FantomeFigure fantomeGraph = new FantomeFigure(fantome);
             fantomeGraph.draw();
         }
@@ -55,6 +57,6 @@ public class GrilleFigure {
      * @return the logic grid
      */
     public Grille actualisation(int action){
-        return grille.actualisation(action);
+        return grilleLogic.actualisation(action);
     }
 }

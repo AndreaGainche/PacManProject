@@ -14,13 +14,15 @@ import logic.*;
 public class PacmanPicture {
     private GrilleFigure grille;
     private ImageFigure logo;
+    private Rectangle mur;
 
     /**
      * Create a new picture with grid.
      */
     public PacmanPicture(Grille grilleLogic){
-        grille = new GrilleFigure(grilleLogic);
-        logo = new ImageFigure(150, 28, 175, grilleLogic.dimensionGrille()+20, "assets"+File.separator+"logo.png");
+        grille = new GrilleFigure(grilleLogic); // grilleLogic.dimensionGrille()+20
+        logo = new ImageFigure(150, 28, 175, 520, "assets"+File.separator+"logo.png");
+        mur = new Rectangle(50,50,200,200,Color.GREEN);
         this.draw();
         this.animate();
     }
@@ -29,8 +31,9 @@ public class PacmanPicture {
      * Draws all the shapes
      */
     public void draw(){
-        grille.draw();
         logo.draw();
+        grille.draw();
+        mur.draw();
     }
     
     /**

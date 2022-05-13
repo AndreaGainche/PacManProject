@@ -327,22 +327,23 @@ public class CanvasFrame
             for (SimpleFigure figure : figures) {
                 g2D.setColor(figure.getColor());
                 Shape shape = figure.makeShape();
-                
-                if(shape!=null){
-                    g2D.fill(shape);
-                }
 
                 if(figure instanceof ImageFigure){ // dessine l'image si la forme est instanciée par le constructeur de ImageFigure
                     ImageFigure imgFig = (ImageFigure)figure;
                     imgFig.getImage().paintIcon(null, g2D, figure.getX(), figure.getY());
                 }
 
-                if(figure instanceof TextFigure){
+                if(shape!=null){
+                    g2D.fill(shape);
+                }
+                System.out.println(figure.getClass());
+
+               /* if(figure instanceof TextFigure){
                     TextFigure txtFig = (TextFigure)figure;
                     Font font = new Font("Helvetica", Font.BOLD, txtFig.getHeight());
                     g2D.setFont(font);
                     g2D.drawString(txtFig.getText(), txtFig.getPosition()[0], txtFig.getPosition()[1]);
-                }
+                }*/
             }
         }
     }
