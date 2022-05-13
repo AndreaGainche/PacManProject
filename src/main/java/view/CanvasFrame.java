@@ -337,7 +337,7 @@ public class CanvasFrame
                     imgFig.getImage().paintIcon(null, g2D, figure.getX(), figure.getY());
                 }
 
-                if(figure instanceof TextFigure){
+                if(figure instanceof TextFigure){ // dessine le texte si la forme est instanciée par le constructeur de TextFigure
                     TextFigure txtFig = (TextFigure)figure;
                     Font font = new Font("Helvetica", Font.BOLD, txtFig.getHeight());
                     g2D.setFont(font);

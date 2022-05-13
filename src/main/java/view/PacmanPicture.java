@@ -14,6 +14,7 @@ import logic.*;
 public class PacmanPicture {
     private GrilleFigure grille;
     private ImageFigure logo;
+    private TextFigure nbVie;
 
     /**
      * Create a new picture with grid.
@@ -21,6 +22,7 @@ public class PacmanPicture {
     public PacmanPicture(Grille grilleLogic){
         grille = new GrilleFigure(grilleLogic);
         logo = new ImageFigure(150, 28, 175, grilleLogic.dimensionGrille()+20, "assets"+File.separator+"logo.png");
+        nbVie = new TextFigure(20, 50, 500, Integer.toString(grilleLogic.getPacMan().getNombreDeVie()));
         this.draw();
         this.animate();
     }
@@ -31,6 +33,7 @@ public class PacmanPicture {
     public void draw(){
         grille.draw();
         logo.draw();
+        nbVie.draw();
     }
     
     /**
