@@ -340,7 +340,7 @@ public class CanvasFrame
 
                /* if(figure instanceof TextFigure){
                     TextFigure txtFig = (TextFigure)figure;
-                    Font font = new Font("Helvetica", Font.BOLD, txtFig.getHeight());
+                    Font font = new Font("Helvetica", Font.BOLD, txtFig.getSize());
                     g2D.setFont(font);
                     g2D.drawString(txtFig.getText(), txtFig.getPosition()[0], txtFig.getPosition()[1]);
                 }*/
